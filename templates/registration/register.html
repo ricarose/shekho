@@ -1,0 +1,61 @@
+{% extends 'session/base.html' %}
+{% load url from future %}
+
+{% block pagetitle %}Login{% endblock %}
+
+{% block navbar %}
+            <li><a href="/">Home</a></li>
+            <li><a href="/sessions/submit">Submit Session</a></li>
+            <li><a href="/help">Help</a></li>
+{% endblock %}
+
+{% block scripts %}
+
+    <script src="/static/js/bootstrap-twipsy.js"></script>
+    <script src="/static/js/bootstrap-popover.js"></script>
+    <script src="/static/js/bootstrap-modal.js"></script>
+    <script src="/static/js/bootstrap-alerts.js"></script>
+          <script>
+            $(function () {
+              $("a[rel=twipsy]").twipsy({
+                live: true
+              })
+            })
+          </script>
+
+{% endblock %}
+
+
+{% block banner %}
+{% endblock %}
+
+{% block primary %}
+
+<div class="row">
+ <div class="span15">
+
+
+  <h3>Create an account</h3>
+    <form method="POST" action=""  class="form-stacked">{% csrf_token %}
+
+     <fieldset>
+        {{ form.as_p }}
+
+          <div class="actions">
+            <input type="submit" class="btn primary" value="Submit">&nbsp;<button type="reset" class="btn">Cancel</button>
+          </div>
+
+     </fieldset>
+    </form>
+
+
+ </div>
+</div>
+
+<div class="row">
+<div class="span16">
+Don't have an account yet? <a href="accounts/register">Register here</a>.
+</div>
+</div>
+{% endblock %}
+

@@ -1,0 +1,49 @@
+{% extends 'session/base.html' %}
+
+{% block pagetitle %}Browse Session Ideas{% endblock %}
+
+{% block scripts %}
+<script>
+$(function() {
+   $("tr").click(function(){
+      window.location = $(this).data("url");
+
+   });
+});
+</script>
+{% endblock %}
+
+{% block navbar %}
+            <li><a href="/">Home</a></li>
+            <li><a href="/sessions/submit">Submit Sessions</a></li>
+            <li><a href="/help">Help</a></li>
+{% endblock %}
+
+
+{% block primary %}
+
+<div class="row">
+ <div class="span16">
+  <h4>{{ category_name }}</h4>
+  <table class="zebra-striped">
+    <thead>
+          <tr>
+            <th>Title</th>
+            <th>Description</th>
+          </tr>
+    </thead>
+    <tbody>
+    {% for session in sessions %}
+      <tr data-url="/sessions/view/{{ session.id }}" style="cursor:pointer;">
+        <td>{{ session.title }}</td> 
+        <td>{{ session.description }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+
+ </div>
+</div>
+
+{% endblock %}
+

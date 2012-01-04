@@ -1,0 +1,26 @@
+{% extends 'session/base.html' %}
+
+{% block pagetitle %}Home{% endblock %}
+
+{% block navbar %}
+            <li class="active"><a href="/">Home</a></li>
+            <li><a href="/sessions/submit">Submit Session</a></li>
+            <li><a href="/FAQ">FAQ</a></li>
+{% endblock %}
+
+{% block banner %}
+      <div class="hero-unit">
+        <div class="container">
+        <div class="row">
+        <div class="span3">
+        <img src="http://placehold.it/150x150&text=Logo">
+        </div>
+        <div class="span11">
+        <p>The Festival of Learning is a two-day festival on 27-28 January where anyone from E14 and E15 can teach, learn, and collaborate!
+        Formats include one-on-one tutorials, clinics, discussion circles, workshops, playdates, games, collaborative construction projects and more.</p>
+        <p><a href="/sessions/browse" class="btn primary large">Explore sessions ideas &raquo;</a></p>
+        </div>
+        </div>
+        </div>
+      </div>
+{% endblock %}

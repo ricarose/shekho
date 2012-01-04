@@ -1,0 +1,136 @@
+{% extends 'session/base.html' %}
+
+{% block pagetitle %}Submit Session{% endblock %}
+
+{% block navbar %}
+            <li><a href="/">Home</a></li>
+            <li class="active"><a href="/sessions/submit">Submit Session</a></li>
+            <li><a href="/help">Help</a></li>
+{% endblock %}
+
+{% block scripts %}
+
+    <script src="/static/js/bootstrap-twipsy.js"></script>
+    <script src="/static/js/bootstrap-popover.js"></script>
+    <script src="/static/js/bootstrap-modal.js"></script>
+    <script src="/static/js/bootstrap-alerts.js"></script>
+          <script>
+            $(function () {
+              $("a[rel=twipsy]").twipsy({
+                live: true
+              })
+            })
+          </script>
+
+{% endblock %}
+
+
+{% block banner %}
+{% if success %}
+{% else %}
+<div class="alert-message notice fade in" data-alert="alert">
+<a class="close" href="#">&times;</a>
+<p><strong>Note:</strong> Submitting a session idea does not necessarily mean that you have to commit to conducting it. You can defer your decision till &lt;DATE&gt; </p>
+</div>
+{% endif %}
+{% endblock %}
+
+{% block primary %}
+
+<div class="row">
+ <div class="span15">
+
+ {% if success %}
+ <h3>Success</h3>
+ <div class="alert-message block-message success fade in" data-alert="alert">
+  <a class="close" href="#">×</a>
+  <p><strong>Submission successful!</strong><br>Your session idea has been succesfully submitted.</p>
+  <div class="alert-actions">
+    <a class="btn small" href="/">Browse other session ideas</a> 
+  </div>
+</div>
+ {% else %}
+
+  <h3>Submit a session idea</h3>
+    <form method="POST" action="/sessions/submit" enctype="multipart/form-data" class="form-stacked">{% csrf_token %}
+
+    {% if form.non_field_errors %}
+    <div class="alert-message error fade in" data-alert="alert">
+    <a class="close" href="#">&times;</a>
+    <p>{{ form.non_field_errors }}</p>
+    </div>
+    {% endif %}
+
+     <fieldset>
+
+          {% if form.title.errors %}
+          <div class="clearfix error">
+          {% else %}
+          <div class="clearfix">   
+          {% endif %}
+
+            <label for="id_title">Title</label>
+            <div class="input">
+              <input class="xlarge" id="id_title" name="title" size="30" type="text" placeholder="Title of your proposed session">
+              {% if form.title.errors %}
+              <span class="help-block">
+              {{form.title.errors}}
+              </span>
+              {% endif %}
+            </div>
+          </div><!-- /clearfix -->
+
+          {% if form.description.errors %}
+          <div class="clearfix error">
+          {% else %}
+          <div class="clearfix">
+          {% endif %}
+   
+            <label for="id_description">Description</label>
+            <div class="input">
+              <textarea class="xxlarge" id="id_description" name="description" rows="5"></textarea>
+              <span class="help-block">
+              {% if form.description.errors %}
+              {{form.description.errors}}
+              {% else %}
+                Short description of the session (HTML allowed).
+              {% endif %}
+              </span>
+            </div>
+          </div>
+
+          {% if form.duration.errors %}
+          <div class="clearfix error">
+          {% else %}
+          <div class="clearfix">
+          {% endif %}
+
+            <label for="id_duration">Duration</label>
+            <div class="input">
+              <input class="xlarge" id="id_duration" name="duration" size="30" type="text" placeholder="Estimated duration of your session">
+              {% if form.duration.errors %}
+              <span class="help-block">
+              {{form.duration.errors}}
+              </span>
+              {% endif %}
+            </div>
+          </div><!-- /clearfix -->
+        
+          <input type='hidden' name='facilitator' value='{{ user.id }}'> 
+          <input type='hidden' name='status' value='unconfirmed'>
+
+          <div class="actions">
+            <input type="submit" class="btn primary" value="Submit">&nbsp;<button type="reset" class="btn">Cancel</button>
+          </div>
+
+     </fieldset>
+    </form>
+
+{% endif %}
+
+ </div>
+</div>
+
+
+{% endblock %}
+

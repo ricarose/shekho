@@ -1,0 +1,63 @@
+{% extends 'session/base.html' %}
+
+{% block pagetitle %}Home{% endblock %}
+
+{% block scripts %}
+<script src="/static/js/bootstrap-tabs.js"></script>
+{% endblock %}
+
+{% block navbar %}
+            <li><a href="/">Home</a></li>
+            <li><a href="/sessions/submit">Submit Blocks</a></li>
+            <li><a href="/help">Help</a></li>
+{% endblock %}
+
+{% block banner %}
+{% endblock %}
+
+{% block primary %}
+<div class="row">
+<div class="span16">
+  <h3>{{ session.title }}</h3>
+  <span class="label success">Confirmed</span>
+  <br><br>
+  By {{ session.facilitator }}
+  <br><br>
+  <a href="#" class="btn small">I want to attend!</a>
+</div>
+</div>
+
+<div class="row">
+ <div class="span16">
+ <br>
+
+ <div class="well">
+ <ul class="tabs" data-tabs="tabss" >
+ <li class="active"><a href="#description">Description</a></li>
+ <li><a href="#attendees">Attendees</a></li>
+ </ul>
+
+ <div class="tab-content">
+  
+  <div class="active" id="description">
+  <p>
+  {{ session.description }}
+  </p>
+  </div>
+
+  <div id="attendees">
+  <ul>
+  <li><a>Someone</a></li>
+  <li><a>Someone else</a></li>
+  <li><a>Someone else else</a></li>
+  </ul>
+  </div>
+
+ </div> 
+
+ </div>
+ </div>
+</div>
+
+{% endblock %}
+

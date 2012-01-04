@@ -1,0 +1,67 @@
+<html lang="en">
+<head>
+   <title>Festival of Learning - {%block pagetitle %}{% endblock %}</title>
+   <link rel="stylesheet" href="/static/bootstrap.css">
+   <style type="text/css">
+      body {
+        padding-top: 60px;
+        background-color: #fff;
+        line-height: 1.5385em;
+      }
+      .alert-message.block-message {
+          background-color: white;
+      }
+      input, select, .uneditable-input {
+          height: 28px;
+      }
+    </style>
+
+    {% block style %}{% endblock %}
+
+    <script type="text/javascript" src="/static/js/jquery-1.6.4.min.js"></script>
+    {% block scripts %}{% endblock %}
+    <script src="/static/js/bootstrap-dropdown.js"></script>
+
+</head>
+<body>
+    <div class="topbar">
+      <div class="topbar-inner">
+        <div class="container">
+          <a class="brand" href="/">Festival of Learning</a>
+          <ul class="nav">
+          {% block navbar %}{% endblock %}
+          </ul>
+          <ul class="nav secondary-nav">
+            {% if user.is_authenticated %}
+            <li class="dropdown" data-dropdown="dropdown">
+            <a href="#" class="dropdown-toggle">{{ user.username }}</a>
+            <ul class="dropdown-menu">
+            <li><a href="">Dashboard</a></li>
+            {% if user.is_staff %}
+            <li><a href="/blocks/admin">Admin Dashboard</a></li>
+            {% endif %}
+            <li>
+            <li class="divider"></li>
+            <li><a href="/accounts/logout">Logout</a></li>
+            </ul>
+            </li>
+            {% else %}
+            <li><a href="/accounts/login">Sign in</a></li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  <div class="container">
+  <div class="row">
+   {% block banner %}{% endblock %}
+    <div class="span16">
+        {% block primary %}{% endblock %}
+    </div>
+   </div>
+   <footer>
+   <a href="http://web.mit.edu">MIT</a> | <a href="http://media.mit.edu">Media Lab</a> |  <a href="http://cms.mit.edu">CMS</a> | <a href="http://act.mit.edu">ACT</a>
+  </footer>
+  </div>
+</body>
+</html>
