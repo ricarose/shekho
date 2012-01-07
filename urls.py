@@ -14,7 +14,7 @@ urlpatterns = patterns('',
     url(r'^sessions/(?P<session_id>\d+)/confirm$', 'shekho.session.views.session_confirm'),
     url(r'^accounts/login/$', 'django.contrib.auth.views.login'),
     url(r'^accounts/logout/$', 'shekho.session.views.user_logout'),
-    url(r'^accounts/register/$', 'shekho.session.views.register')
+    url(r'^accounts/register/$', 'shekho.session.views.register'),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
