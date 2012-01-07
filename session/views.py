@@ -76,7 +76,20 @@ def submit(request):
     c.update(csrf(request))
     return HttpResponse(t.render(c))
 
+@login_required
+def session_confirm(request, session_id):
+    try:
+        session = Session.objects.get(pk=session_id)
+    except Session.DoesNotExist:
+        return HttpResponse(simplejson.dumps({'result' : False}), 'text/javascript')
 
+	if request.user == session.facilitator:
+    	session.status = 'confirmed'
+   		session.save()
+    	return HttpResponse(simplejson.dumps({'result' : True}), 'text/javascript')
+    else:
+    	return HttpResponse(simplejson.dumps({'result' : False}), 'text/javascript')
+    
 @login_required
 def session_signup(request, session_id):
     try:

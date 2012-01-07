@@ -14,6 +14,17 @@
               })
             })
           </script>
+          <script>
+function confirm(session_id) {
+    $.getJSON('/sessions/'+session_id+'/confirm', function(data) {
+        //TODO: Check for errors
+        console.log(data);
+        $("#confirm-{{session.id}}").attr('onClick', '');
+        $("#confirm-{{session.id}}").addClass('disabled');
+        $("#confirm-{{session.id}}").html('Confirmed!');
+    })
+}
+</script>
 {% endblock %}
 
 {% block navbar %}
@@ -45,7 +56,7 @@
         <button data-controls-modal="modal-for-session-{{session.id}}" data-backdrop="true"  data-keyboard="true" class="btn small" >Signups</button>
         
         <br><br>
-        <a id="signup" href="#" class="btn small" onClick="confirm({{session.id}});">Confirm</a>
+        <a id="confirm-{{session.id}}" href="#" class="btn small" onClick="confirm({{session.id}});">Confirm</a>
         </td>
       </tr>
     {% endfor %}

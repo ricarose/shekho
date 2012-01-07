@@ -11,6 +11,7 @@ urlpatterns = patterns('',
     url(r'^sessions/dashboard', 'shekho.session.views.dashboard'),
     url(r'^sessions/view/(?P<session_id>\d+)/$', 'shekho.session.views.details'),
     url(r'^sessions/(?P<session_id>\d+)/signup$', 'shekho.session.views.session_signup'),
+    url(r'^sessions/(?P<session_id>\d+)/confirm$', 'shekho.session.views.session_confirm'),
     url(r'^accounts/login/$', 'django.contrib.auth.views.login'),
     url(r'^accounts/logout/$', 'shekho.session.views.user_logout'),
     url(r'^accounts/register/$', 'shekho.session.views.register')
