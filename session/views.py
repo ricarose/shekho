@@ -66,7 +66,7 @@ def session_signup(request, session_id):
     except Session.DoesNotExist:
         return HttpResponse(simplejson.dumps({'result' : False}), 'text/javascript')
 
-    session.attendees.append(request.user)
+    session.attendees.add(request.user)
     session.save()
 
     return HttpResponse(simplejson.dumps({'result' : True}), 'text/javascript')

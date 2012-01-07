@@ -47,9 +47,9 @@ function signup() {
  <div class="well">
  <h5>Attendees</h5>
   <ul>
-  <li><a>Someone</a></li>
-  <li><a>Someone else</a></li>
-  <li><a>Someone else else</a></li>
+	{% for attendee in session.attendees.all %}
+	<li>{{attendee.first_name}} {{attendee.last_name}}</li>
+	{%endfor%}
   </ul>
  </div> 
  </div>
