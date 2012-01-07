@@ -67,11 +67,14 @@ def register(request):
 				password=request.POST['password1'])
 			login(request, new_user)
 			return HttpResponseRedirect('/')
-	
+		else:
+			c = RequestContext(request, {'form': form})
+			c.update(csrf(request))
+			return HttpResponse(t.render(c))			
+			
 	form = RegistrationForm()
 
 	c = RequestContext(request, {'form': form})
-
 	c.update(csrf(request))
 
 	return HttpResponse(t.render(c))

@@ -36,6 +36,14 @@
 
 
   <h3>Create an account</h3>
+  
+    {% if form.non_field_errors %}
+    <div class="alert-message error fade in" data-alert="alert">
+    <a class="close" href="#">&times;</a>
+    <p>{{ form.non_field_errors }}</p>
+    </div>
+    {% endif %}
+    
     <form method="POST" action=""  class="form-stacked">{% csrf_token %}
 
      <fieldset>
@@ -52,10 +60,6 @@
  </div>
 </div>
 
-<div class="row">
-<div class="span16">
-Don't have an account yet? <a href="accounts/register">Register here</a>.
-</div>
-</div>
+
 {% endblock %}
 
