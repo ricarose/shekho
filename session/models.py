@@ -20,4 +20,4 @@ class Session(models.Model):
         related_name="attendees")
         
     def __unicode__(self):
-    	return title
+    	return self.title
