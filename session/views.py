@@ -4,7 +4,7 @@ from django.template import RequestContext, loader
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.core.context_processors import csrf
 from django.shortcuts import render_to_response, get_object_or_404
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
 
