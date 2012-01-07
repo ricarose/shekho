@@ -3,7 +3,17 @@
 {% block pagetitle %}Home{% endblock %}
 
 {% block scripts %}
-<script src="/static/js/bootstrap-tabs.js"></script>
+<script>
+function signup() {
+    $.getJSON('/sessions/{session.id}/signup', function(data) {
+        //TODO: Check for errors
+        console.log(data);
+        $("#signup").attr('onClick', '');
+        $("#signup").addClass('disabled');
+        $("#signup").html('Signed-up!');
+    })
+}
+</script>
 {% endblock %}
 
 {% block navbar %}
@@ -27,7 +37,7 @@
   <br>
   {{ session.description }}
   <br><br>
-  <a href="#" class="btn small">I want to attend!</a>
+  <a id="signup" href="#" class="btn small" onClick="signup();">Sign me up!</a>
 </div>
 </div>
 

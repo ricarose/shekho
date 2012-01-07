@@ -58,6 +58,20 @@ def submit(request):
     c.update(csrf(request))
     return HttpResponse(t.render(c))
 
+
+@login_required
+def session_signup(request, session_id):
+    try:
+        session = Session.objects.get(pk=session_id)
+    except Session.DoesNotExist:
+        return HttpResponse(simplejson.dumps({'result' : False}), 'text/javascript')
+
+    session.attendees.append(request.user)
+    session.save()
+
+    return HttpResponse(simplejson.dumps({'result' : True}), 'text/javascript')
+
+# This should ideally go somewhere else
 def register(request):
 	if request.user.is_authenticated(): # Disallow access to logged in users
 		return HttpResponseRedirect('/' % request.path)
