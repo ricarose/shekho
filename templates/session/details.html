@@ -23,9 +23,10 @@
   {% if confirmed %}
   <span class="label success">Confirmed</span>
   {% endif %}
-  <br><br>
   By {{ session.facilitator.first_name }} {{ session.facilitator.last_name }}
-  <br><br>
+  <br>
+  {{ session.description }}
+  <br>
   <a href="#" class="btn small">I want to attend!</a>
 </div>
 </div>
@@ -36,17 +37,10 @@
 
  <div class="well">
  <ul class="tabs" data-tabs="tabss" >
- <li class="active"><a href="#description">Description</a></li>
  <li><a href="#attendees">Attendees</a></li>
  </ul>
 
  <div class="tab-content">
-  
-  <div class="active" id="description">
-  <p>
-  {{ session.description }}
-  </p>
-  </div>
 
   <div id="attendees">
   <ul>
