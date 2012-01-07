@@ -1,3 +1,5 @@
+import simplejson
+
 from django.template import RequestContext, loader
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.core.context_processors import csrf
