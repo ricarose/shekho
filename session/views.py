@@ -2,12 +2,12 @@ from django.template import RequestContext, loader
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.core.context_processors import csrf
 from django.shortcuts import render_to_response, get_object_or_404
+from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
-from django.contrib.auth.forms import UserCreationForm
 
 from shekho.session.models import SESSION_STATUS, Session
-from shekho.session.forms import SessionForm
+from shekho.session.forms import SessionForm, RegistrationForm
 
 def index(request):
     t = loader.get_template('session/index.html')
@@ -53,15 +53,23 @@ def submit(request):
     return HttpResponse(t.render(c))
 
 def register(request):
+	if request.user.is_authenticated(): # Disallow access to logged in users
+		return HttpResponseRedirect('/' % request.path)
+		
+	
     t = loader.get_template('registration/register.html')
 
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = RegistrationForm(request.POST)
         if form.is_valid():
             new_user = form.save()
-            return HttpResponseRedirect("/accounts/login")
+			new_user = \
+				authenticate(username=request.POST['username'], \
+				password=request.POST['password1'])
+            login(request, new_user)
+            return HttpResponseRedirect('/')
 
-    form = UserCreationForm()
+    form = RegistrationForm()
 
     c = RequestContext(request, {'form': form})
 
