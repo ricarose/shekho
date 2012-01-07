@@ -3,6 +3,7 @@
 {% block pagetitle %}Home{% endblock %}
 
 {% block scripts %}
+{% if user.is_authenticated %}
 <script>
 function signup() {
     $.getJSON('/sessions/{{session.id}}/signup', function(data) {
@@ -11,9 +12,12 @@ function signup() {
         $("#signup").attr('onClick', '');
         $("#signup").addClass('disabled');
         $("#signup").html('Signed-up!');
+        $("#attendeelist").append('<li>{{user.first_name}} {{user.last_name}}</li>')
+        
     })
 }
 </script>
+{% endif %}
 {% endblock %}
 
 {% block navbar %}
@@ -44,7 +48,7 @@ function signup() {
   <a id="signup" href="#" class="btn small" onClick="signup();">Sign me up!</a>
   {% endif %}
   {% else %}
-  <a id="signup" href="#" class="btn small">Register to sign up.</a>  
+  <a id="signup" href="/accounts/login" class="btn small">Log in to sign up.</a>  
   {% endif %}
 </div>
 </div>
@@ -54,7 +58,7 @@ function signup() {
  <br>
  <div class="well">
  <h5>Attendees</h5>
-  <ul>
+  <ul id="attendeelist">
 	{% for attendee in session.attendees.all %}
 	<li>{{attendee.first_name}} {{attendee.last_name}}</li>
 	{%endfor%}
