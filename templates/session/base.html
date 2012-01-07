@@ -36,7 +36,7 @@
             <li class="dropdown" data-dropdown="dropdown">
             <a href="#" class="dropdown-toggle">{{ user.username }}</a>
             <ul class="dropdown-menu">
-            <li><a href="">Dashboard</a></li>
+            <li><a href="/sessions/dashboard">Dashboard</a></li>
             {% if user.is_staff %}
             <li><a href="/blocks/admin">Admin Dashboard</a></li>
             {% endif %}

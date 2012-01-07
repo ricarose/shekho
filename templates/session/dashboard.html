@@ -1,0 +1,74 @@
+{% extends 'session/base.html' %}
+
+{% block pagetitle %}Dashboard{% endblock %}
+
+{% block scripts %}
+<script>
+$(function() {
+   $("tr").click(function(){
+      window.location = $(this).data("url");
+
+   });
+});
+</script>
+{% endblock %}
+
+{% block navbar %}
+            <li><a href="/">Home</a></li>
+            <li><a href="/sessions/submit">Submit Session</a></li>
+            <li><a href="/sessions/browse">Browse Sessions</a></li>
+            <li><a href="/help">Help</a></li>
+{% endblock %}
+
+
+{% block primary %}
+
+<div class="row">
+ <div class="span16">
+  <h4>{{ category_name }}</h4>
+  <table class="condensed-table bordered-table zebra-striped">
+    <thead>
+          <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th></th>
+          </tr>
+    </thead>
+    <tbody>
+    {% for session in sessions %}
+      <tr data-url="/sessions/view/{{ session.id }}" style="cursor:pointer;">
+        <td>{{ session.title }}</td> 
+        <td>{{ session.description }}</td>
+        <td>
+        <a id="signup" data-controls-modal="modal-for-session{{session.id}}" data-backdrop="static" class="btn small" >View sign-ups</a>
+        
+        <div id="modal-for-session{{session.id}}" class="modal hide fade in" style="display: block; ">
+            <div class="modal-header">
+              <a href="#" class="close">×</a>
+              <h3>Attendees who have signed up</h3>
+            </div>
+            <div class="modal-body">
+              <ul>
+              	{% for attendee in session.attendees.all %}
+				<li>{{attendee.first_name}} {{attendee.last_name}}, {{attendee.email}}</li>
+				{%endfor%}
+              </ul>
+            </div>
+            <div class="modal-footer">
+              Please do not share these email addresses.
+            </div>
+        </div>
+        
+        <br>
+        <a id="signup" href="#" class="btn small" onClick="confirm({{session.id}});">Confirm</a>
+        </td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+
+ </div>
+</div>
+
+{% endblock %}
+

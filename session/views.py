@@ -47,6 +47,16 @@ def details(request, session_id):
     return HttpResponse(t.render(c))
 
 @login_required
+def dashboard(request):
+	sessions = Session.objects.filter(facilitator=request.user)
+	
+    return render_to_response('session/dashboard.html', \
+        {'sessions' : sessions}, \
+        context_instance=RequestContext(request))
+	
+	
+
+@login_required
 def submit(request):
     t = loader.get_template('session/submit.html')
 
