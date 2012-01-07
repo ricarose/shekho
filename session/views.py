@@ -55,24 +55,23 @@ def submit(request):
 def register(request):
 	if request.user.is_authenticated(): # Disallow access to logged in users
 		return HttpResponseRedirect('/' % request.path)
-		
-	
-    t = loader.get_template('registration/register.html')
 
-    if request.method == 'POST':
-        form = RegistrationForm(request.POST)
+	t = loader.get_template('registration/register.html')
+    
+	if request.method == 'POST':
+		form = RegistrationForm(request.POST)
         if form.is_valid():
-            new_user = form.save()
+			new_user = form.save()
 			new_user = \
 				authenticate(username=request.POST['username'], \
 				password=request.POST['password1'])
-            login(request, new_user)
-            return HttpResponseRedirect('/')
+			login(request, new_user)
+			return HttpResponseRedirect('/')
+	
+	form = RegistrationForm()
 
-    form = RegistrationForm()
+	c = RequestContext(request, {'form': form})
 
-    c = RequestContext(request, {'form': form})
+	c.update(csrf(request))
 
-    c.update(csrf(request))
-
-    return HttpResponse(t.render(c))
+	return HttpResponse(t.render(c))
