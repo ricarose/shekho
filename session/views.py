@@ -82,7 +82,7 @@ def session_signup(request, session_id):
 # This should ideally go somewhere else
 def register(request):
 	if request.user.is_authenticated(): # Disallow access to logged in users
-		return HttpResponseRedirect('/' % request.path)
+		return HttpResponseRedirect('/')
 
 	t = loader.get_template('registration/register.html')
     
@@ -109,4 +109,4 @@ def register(request):
 	
 def logout(request):
 	logout(request)
-	return HttpResponseRedirect('/' % request.path)
+	return HttpResponseRedirect('/')
