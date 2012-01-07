@@ -19,9 +19,9 @@ function confirm(session_id) {
     $.getJSON('/sessions/'+session_id+'/confirm', function(data) {
         //TODO: Check for errors
         console.log(data);
-        $("#confirm-'+session_id).attr('onClick', '');
-        $("#confirm-'+session_id).addClass('disabled');
-        $("#confirm-'+session_id).html('Confirmed!');
+        $("#confirm-"+session_id).attr('onClick', '');
+        $("#confirm-"+session_id).addClass('disabled');
+        $("#confirm-"+session_id).html('Confirmed!');
     })
 }
 </script>
