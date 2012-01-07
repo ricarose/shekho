@@ -31,11 +31,17 @@ def details(request, session_id):
     	confirmed = True
     else:
     	confirmed = False
+    
+    signed_up = False
+    if request.user.is_authenticated():
+    	if request.user in session.attendees.all():
+    		signed_up = True
     	
     t = loader.get_template('session/details.html')
     c = RequestContext(request, {
         'session' : session,
         'confirmed' : confirmed,
+        'signed_up' : signed_up,
     })
 
     return HttpResponse(t.render(c))

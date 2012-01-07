@@ -5,7 +5,7 @@
 {% block scripts %}
 <script>
 function signup() {
-    $.getJSON('/sessions/{session.id}/signup', function(data) {
+    $.getJSON('/sessions/{{session.id}}/signup', function(data) {
         //TODO: Check for errors
         console.log(data);
         $("#signup").attr('onClick', '');
@@ -37,7 +37,15 @@ function signup() {
   <br>
   {{ session.description }}
   <br><br>
+  {% if user.is_authenticated %}
+  {% if signed_up %}
+  <a id="signup" href="#" class="btn small disabled">Signed-up!</a>
+  {% else %}
   <a id="signup" href="#" class="btn small" onClick="signup();">Sign me up!</a>
+  {% endif %}
+  {% else %}
+  <a id="signup" href="#" class="btn small">Register to sign up.</a>  
+  {% endif %}
 </div>
 </div>
 
