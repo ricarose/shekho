@@ -3,14 +3,17 @@
 {% block pagetitle %}Dashboard{% endblock %}
 
 {% block scripts %}
-<script>
-$(function() {
-   $("tr").click(function(){
-      window.location = $(this).data("url");
-
-   });
-});
-</script>
+    <script src="/static/js/bootstrap-twipsy.js"></script>
+    <script src="/static/js/bootstrap-popover.js"></script>
+    <script src="/static/js/bootstrap-modal.js"></script>
+    <script src="/static/js/bootstrap-alerts.js"></script>
+            <script>
+            $(function () {
+              $("a[rel=twipsy]").twipsy({
+                live: true
+              })
+            })
+          </script>
 {% endblock %}
 
 {% block navbar %}
@@ -20,6 +23,12 @@ $(function() {
             <li><a href="/help">Help</a></li>
 {% endblock %}
 
+{% block banner %}
+<div class="alert-message notice fade in" data-alert="alert">
+<a class="close" href="#">&times;</a>
+<p><strong>Note:</strong> Your email address will be visibile to the facilitators of the sessions you sign up for.</p>
+</div>
+{% endblock %}
 
 {% block primary %}
 
@@ -40,7 +49,7 @@ $(function() {
         <td>{{ session.title }}</td> 
         <td>{{ session.description }}</td>
         <td>
-        <a id="signup" data-controls-modal="modal-for-session{{session.id}}" data-backdrop="static" class="btn small" >View sign-ups</a>
+        <a id="signup" data-controls-modal="modal-for-session{{session.id}}" data-backdrop="static" class="btn small" >Sign-ups</a>
         
         <div id="modal-for-session{{session.id}}" class="modal hide fade in" style="display: block; ">
             <div class="modal-header">
@@ -59,7 +68,7 @@ $(function() {
             </div>
         </div>
         
-        <br>
+        <br><br>
         <a id="signup" href="#" class="btn small" onClick="confirm({{session.id}});">Confirm</a>
         </td>
       </tr>
