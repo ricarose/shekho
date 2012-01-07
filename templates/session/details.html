@@ -20,9 +20,11 @@
 <div class="row">
 <div class="span16">
   <h3>{{ session.title }}</h3>
+  {% if confirmed %}
   <span class="label success">Confirmed</span>
+  {% endif %}
   <br><br>
-  By {{ session.facilitator }}
+  By {{ session.facilitator.first_name }} {{ session.facilitator.last_name }}
   <br><br>
   <a href="#" class="btn small">I want to attend!</a>
 </div>

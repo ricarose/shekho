@@ -25,9 +25,15 @@ def browse(request):
 
 def details(request, session_id):
     session =  get_object_or_404(Session, pk=session_id)
+    if session.status == 'confirmed':
+    	confirmed = True
+    else:
+    	confirmed = False
+    	
     t = loader.get_template('session/details.html')
     c = RequestContext(request, {
         'session' : session,
+        'confirmed' : confirmed,
     })
 
     return HttpResponse(t.render(c))
