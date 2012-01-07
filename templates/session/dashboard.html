@@ -19,9 +19,9 @@ function confirm(session_id) {
     $.getJSON('/sessions/'+session_id+'/confirm', function(data) {
         //TODO: Check for errors
         console.log(data);
-        $("#confirm-{{session.id}}").attr('onClick', '');
-        $("#confirm-{{session.id}}").addClass('disabled');
-        $("#confirm-{{session.id}}").html('Confirmed!');
+        $("#confirm-'+session_id}}").attr('onClick', '');
+        $("#confirm-'+session_id}}").addClass('disabled');
+        $("#confirm-'+session_id}}").html('Confirmed!');
     })
 }
 </script>
@@ -56,7 +56,11 @@ function confirm(session_id) {
         <button data-controls-modal="modal-for-session-{{session.id}}" data-backdrop="true"  data-keyboard="true" class="btn small" >Signups</button>
         
         <br><br>
+        {% if session.status == "confirmed" %}
+        <a id="confirm-{{session.id}}" href="#" class="btn small disabled">Confirmed!</a>
+        {%else%}
         <a id="confirm-{{session.id}}" href="#" class="btn small" onClick="confirm({{session.id}});">Confirm</a>
+        {%endif%}
         </td>
       </tr>
     {% endfor %}
