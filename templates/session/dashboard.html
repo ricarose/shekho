@@ -42,23 +42,6 @@
         <td>{{ session.title }}</td> 
         <td>{{ session.description }}</td>
         <td>
-        <div id="modal-for-session-{{session.id}}" class="modal hide fade in" style="display: block; ">
-            <div class="modal-header">
-              <a href="#" class="close">×</a>
-              <h3>Attendees who have signed up</h3>
-            </div>
-            <div class="modal-body">
-              <ul>
-              	{% for attendee in session.attendees.all %}
-				<li>{{attendee.first_name}} {{attendee.last_name}}, {{attendee.email}}</li>
-				{%endfor%}
-              </ul>
-            </div>
-            <div class="modal-footer">
-              Please do not share these email addresses.
-            </div>
-        </div>
-        
         <button data-controls-modal="modal-for-session-{{session.id}}" data-backdrop="true"  data-keyboard="true" class="btn small" >Signups</button>
         
         <br><br>
@@ -71,6 +54,25 @@
 
  </div>
 </div>
+
+{% for session in sessions %}
+        	<div id="modal-for-session-{{session.id}}" class="modal hide fade in" style="display: block; ">
+            <div class="modal-header">
+              <a href="#" class="close">×</a>
+              <h3>Sign ups for {{session.title}}</h3>
+            </div>
+            <div class="modal-body">
+              <ul>
+              	{% for attendee in session.attendees.all %}
+				<li>{{attendee.first_name}} {{attendee.last_name}}, {{attendee.email}}</li>
+				{%endfor%}
+              </ul>
+            </div>
+            <div class="modal-footer">
+              Please do not share these email addresses.
+            </div>
+        </div>
+{% endfor %}
 
 {% endblock %}
 
