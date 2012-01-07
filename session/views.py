@@ -58,9 +58,9 @@ def register(request):
 
 	t = loader.get_template('registration/register.html')
     
-	if request.method == 'POST':
+    if request.method == 'POST':
 		form = RegistrationForm(request.POST)
-        if form.is_valid():
+		if form.is_valid():
 			new_user = form.save()
 			new_user = \
 				authenticate(username=request.POST['username'], \
