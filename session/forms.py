@@ -1,3 +1,4 @@
+from django import forms
 from django.forms import ModelForm
 from django.contrib.auth.forms import UserCreationForm
 
@@ -9,7 +10,7 @@ class SessionForm(ModelForm):
 
 
 class RegistrationForm(UserCreationForm):
-	username	= forms.CharField(max_length=30)
+	username = forms.CharField(max_length=30)
 	first_name = forms.CharField(max_length=30)
 	last_name = forms.CharField(max_length=30)
 	email = forms.EmailField(max_length=75)
