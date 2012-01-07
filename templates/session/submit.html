@@ -100,6 +100,27 @@
             </div>
           </div>
 
+          {% if form.type.errors %}
+          <div class="clearfix error">
+          {% else %}
+          <div class="clearfix">
+          {% endif %}
+
+            <label for="id_type">Type</label>
+            <div class="input">
+              <input class="xlarge" id="id_type" name="type" size="30" type="text" placeholder="Type/format of your session">
+              {% if form.type.errors %}
+              <span class="help-block">
+              {{form.type.errors}}
+              </span>
+              {% else %}
+              <span class="help-block">
+              (eg: workshop, day-long event, etc)
+              </span>
+              {% endif %}
+            </div>
+          </div><!-- /clearfix -->
+
           {% if form.duration.errors %}
           <div class="clearfix error">
           {% else %}
