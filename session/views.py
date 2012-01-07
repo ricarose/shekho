@@ -50,9 +50,9 @@ def details(request, session_id):
 def dashboard(request):
 	sessions = Session.objects.filter(facilitator=request.user)
 	
-    return render_to_response('session/dashboard.html', \
-        {'sessions' : sessions}, \
-        context_instance=RequestContext(request))
+	return render_to_response('session/dashboard.html', \
+		{'sessions' : sessions}, \
+		context_instance=RequestContext(request))
 	
 	
 
