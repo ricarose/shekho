@@ -18,3 +18,6 @@ class Session(models.Model):
     duration = models.CharField(max_length = 50)
     attendees = models.ManyToManyField(User, null=True, blank=True,\
         related_name="attendees")
+        
+    def __unicode__(self):
+    	return title
