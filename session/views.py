@@ -106,3 +106,7 @@ def register(request):
 	c.update(csrf(request))
 
 	return HttpResponse(t.render(c))
+	
+def logout(request):
+	logout(request)
+	return HttpResponseRedirect('/' % request.path)
