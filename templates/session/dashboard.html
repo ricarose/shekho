@@ -42,9 +42,7 @@
         <td>{{ session.title }}</td> 
         <td>{{ session.description }}</td>
         <td>
-        <button id="signup" data-controls-modal="modal-for-session{{session.id}}" data-backdrop="true"  data-keyboard="true" class="btn small" >Sign-ups</button>
-        
-        <div id="modal-for-session{{session.id}}" class="modal hide fade in" style="display: block; ">
+        <div id="modal-for-session-{{session.id}}" class="modal hide fade in" style="display: block; ">
             <div class="modal-header">
               <a href="#" class="close">×</a>
               <h3>Attendees who have signed up</h3>
@@ -60,6 +58,8 @@
               Please do not share these email addresses.
             </div>
         </div>
+        
+        <button data-controls-modal="modal-for-session-{{session.id}}" data-backdrop="true"  data-keyboard="true" class="btn small" >Signups</button>
         
         <br><br>
         <a id="signup" href="#" class="btn small" onClick="confirm({{session.id}});">Confirm</a>
