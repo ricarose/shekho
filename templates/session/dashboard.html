@@ -79,7 +79,7 @@ function confirm(session_id) {
             <div class="modal-body">
               <ul>
               	{% for attendee in session.attendees.all %}
-				<li>{{attendee.first_name}} {{attendee.last_name}}, {{attendee.email}}</li>
+				{{attendee.first_name}} {{attendee.last_name}} &lt;{{attendee.email}}&gt;,<br/>
 				{%endfor%}
               </ul>
             </div>
