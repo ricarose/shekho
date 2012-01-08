@@ -38,8 +38,9 @@ function signup() {
   <span class="label success">Confirmed</span>
   {% endif %}
   <h6>By {{ session.facilitator.first_name }} {{ session.facilitator.last_name }}</h6>
-  <br>
-  {{ session.description }}
+<p><strong>Duration:</strong> {{session.duration}}</p>
+<p><strong>Type:</strong> {{session.type}}</p>
+<p>  {{ session.description }}<p>
   <br><br>
   {% if user.is_authenticated %}
   {% if signed_up %}
