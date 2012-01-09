@@ -53,7 +53,7 @@ function confirm(session_id) {
         <td>{{ session.title }}</td>
         {% autoescape off %}
         <td>{{ session.description }}</td>
-        {% autoescape on %}
+        {% endautoescape %}
         <td>
         <button data-controls-modal="modal-for-session-{{session.id}}" data-backdrop="true"  data-keyboard="true" class="btn small" >Signups</button>
         
