@@ -153,6 +153,8 @@
  </div>
 </div>
 
+{% if success %}
+{% else %}
 <div class="row">
 <div class="span15">
 <div class="alert-message error fade in" data-alert="alert">
@@ -161,6 +163,7 @@
 </div>
 </div>
 </div>
+{% endif %}
 
 {% endblock %}
 
