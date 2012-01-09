@@ -40,7 +40,9 @@ function signup() {
   <h6>By {{ session.facilitator.first_name }} {{ session.facilitator.last_name }}</h6>
 <p><strong>Duration:</strong> {{session.duration}}</p>
 <p><strong>Type:</strong> {{session.type}}</p>
+{% autoescape off %}
 <p>  {{ session.description }}<p>
+{% endautoescape %}
   <br><br>
   {% if user.is_authenticated %}
   {% if signed_up %}

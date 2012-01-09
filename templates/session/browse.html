@@ -22,7 +22,7 @@ $(function() {
 
 
 {% block primary %}
-
+{% autoescape off %}
 <div class="row">
  <div class="span16">
   <h4>All session ideas</h4>
@@ -49,6 +49,7 @@ $(function() {
 
  </div>
 </div>
+{% endautoescape %}
 
 {% endblock %}
 
