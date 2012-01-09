@@ -21,3 +21,9 @@ class Session(models.Model):
         
     def __unicode__(self):
     	return self.title
+
+    def confirmed(self):
+      if self.status == "confirmed":
+        return True
+      else:
+        return False

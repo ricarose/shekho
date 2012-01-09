@@ -31,6 +31,7 @@ $(function() {
           <tr>
             <th>Title</th>
             <th>Description</th>
+            <th>Status</th>
           </tr>
     </thead>
     <tbody>
@@ -38,6 +39,9 @@ $(function() {
       <tr data-url="/sessions/view/{{ session.id }}" style="cursor:pointer;">
         <td>{{ session.title }}</td> 
         <td>{{ session.description }}</td>
+        <td>{% if session.confirmed %}<span class="label success">Confirmed</span>
+            {% else %} &nbsp; {% endif %}</td>
+
       </tr>
     {% endfor %}
     </tbody>
