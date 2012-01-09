@@ -14,11 +14,11 @@ class Session(models.Model):
         default='unconfirmed')
     #location = models.TextField(blank=True)
     #time = models.DateTimeField(blank=True)
-    type = models.CharField(max_length=30)
+    type = models.CharField(max_length=100)
     duration = models.CharField(max_length = 50)
     attendees = models.ManyToManyField(User, null=True, blank=True,\
         related_name="attendees")
-        
+
     def __unicode__(self):
     	return self.title
 
