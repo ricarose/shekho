@@ -50,8 +50,10 @@ function confirm(session_id) {
     <tbody>
     {% for session in sessions %}
       <tr data-url="/sessions/view/{{ session.id }}" style="cursor:pointer;">
-        <td>{{ session.title }}</td> 
+        <td>{{ session.title }}</td>
+        {% autoescape off %}
         <td>{{ session.description }}</td>
+        {% autoescape on %}
         <td>
         <button data-controls-modal="modal-for-session-{{session.id}}" data-backdrop="true"  data-keyboard="true" class="btn small" >Signups</button>
         
